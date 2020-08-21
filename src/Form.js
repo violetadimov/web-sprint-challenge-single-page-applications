@@ -7,7 +7,7 @@ const Form = props => {
 
   const history = useHistory()
   const routeToConf = () => {
-        console.log(history)
+        //console.log(history)
         history.push('/pizza/confirmation')
   }
 
@@ -104,7 +104,7 @@ const Form = props => {
                 <input
                   type="checkbox"
                   name='chicken'
-                  checked={values.toppings.chicken === true}
+                  checked={values.toppings.chicken}
                   onChange={onCheckboxChange}
                 />&nbsp;
                 Grilled chicken  

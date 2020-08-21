@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import ConfirmationPage from "./ConfirmationPage";
 import OrdersList from "./OrdersList";
 
-const apiUrl = 'https://reqres.in/api/users'
+//const apiUrl = 'https://reqres.in/api/users'
  
 const initialValues = {
   name: "",
@@ -59,13 +59,16 @@ const App = () => {
   // }
 
   const postNewOrder = () => {
-    axios.post(apiUrl, values)
+    axios.post('https://reqres.in/api/users', values)
       .then(res => {
+        debugger
+        console.log(res.data)
         setOrders([...orders, res.data])
         setValues(initialValues)
       })
       .catch(err => {
         console.log(err)
+        debugger
       })
       
   }
@@ -87,8 +90,7 @@ const App = () => {
         })
       })
     setValues({
-      ...values,
-      [name]: value
+      ...values, [name]: value
     })
   }
 
@@ -108,11 +110,13 @@ const App = () => {
       name: values.name,
       size: values.size,
       sauce: values.sauce,
-      toppings: Object.keys(values.toppings).filter(topping => values.toppings[topping])
+      toppings: values.toppings//Object.keys(values.toppings).filter(topping => values.toppings[topping])
 
     }
     postNewOrder(newOrders)
+    console.log(orders)
   }
+  //console.log(orders)
 
   return (
     <div className='app'>
@@ -127,8 +131,13 @@ const App = () => {
         <Route path='/orders'>
           <OrdersList values={values}/>
         </Route>
-        <Route path='/pizza/confirmation'>
-          <ConfirmationPage/>
+        <Route path='/pizza/confirmation' >
+          <ConfirmationPage orders={orders}/>
+          {
+            <div className='user'>
+              <pre>{JSON.stringify(orders, null, 2)}</pre>
+            </div>
+          }
         </Route>
         <Route path='/pizza'>
           <Form 
@@ -158,30 +167,39 @@ const App = () => {
             //   Toppings: ${orders.toppings}
             //   `
             // )
-            // <div>
-            //   <h2>List of Orders</h2>
+            <div>
+              <h2>List of Orders</h2>
               
-              // <div className='user'>
-              //     <pre>{JSON.stringify(orders, null, 2)}</pre>
-              // </div>
-            //   {
-            //       // <div className='user'>
-            //       //     <pre>{JSON.stringify(orders, null, 2)}</pre>
-            //       // </div>
-            //       // orders.map(order => (
-            //       //     //<OrderDetails key={order.id} order={order}/>
-            //       //     <div>
-            //       //         <p>Name:{order.name}</p>
-            //       //         <p>Size: {order.size}</p>
-            //       //         <p>Sauce: {order.sauce}</p>
-            //       //         <p>Topping(s):{order.toppings} </p>
-            //       //         <p>Special instructions: {order.instructions}</p>
-            //       //     </div>
-            //       // ))
-            //   }
+              <div className='user'>
+                  <pre>{JSON.stringify(orders, null, 2)}</pre>
+              </div>
+          
+              {
+
+                // <div className='orderlist'>
+                //     <p>Name:{orders.name}</p>
+                //     <p>Size: {orders.size}</p>
+                //     <p>Sauce: {orders.sauce}</p>
+                //     <p>Topping(s):{orders.toppings} </p>
+                //     <p>Special instructions: {orders.instructions}</p>
+                // </div>
+                  // <div className='user'>
+                  //     <pre>{JSON.stringify(orders, null, 2)}</pre>
+                  // </div>
+                  // orders.map(order => (
+                  //     //<OrderDetails key={order.id} order={order}/>
+                  //     <div>
+                  //         <p>Name:{order.name}</p>
+                  //         <p>Size: {order.size}</p>
+                  //         <p>Sauce: {order.sauce}</p>
+                  //         <p>Topping(s):{order.toppings} </p>
+                  //         <p>Special instructions: {order.instructions}</p>
+                  //     </div>
+                  // ))
+              }
               
         
-            // </div>
+            </div>
           }
         </Route>
       </Switch>

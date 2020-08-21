@@ -1,45 +1,45 @@
 import React, { useState } from 'react';
-import axios from 'axios'
-import { Link } from 'react-router-dom'
+// import axios from 'axios'
+ import { Link } from 'react-router-dom'
 
-const apiUrl = 'https://reqres.in/api/users'
+// const apiUrl = 'https://reqres.in/api/users'
 function OrdersList(props) {
-  const { values }= props
-  const [orders, setOrders] = useState([])
+//   const { values }= props
+//   const [orders, setOrders] = useState([])
 
-  const getOrder=() => {
-    axios.get(apiUrl)
-      .then(res => {
-        setOrders(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+//   const getOrder=() => {
+//     axios.get(apiUrl)
+//       .then(res => {
+//         setOrders(res.data)
+//       })
+//       .catch(err => {
+//         console.log(err)
+//       })
+//   }
 
-  const postNewOrder = () => {
-    axios.post(apiUrl, values)
-      .then(res => {
-        setOrders([...orders, res.data])
-      })
-      .catch(err => {
-        console.log(err)
-      })
+//   const postNewOrder = () => {
+//     axios.post(apiUrl, values)
+//       .then(res => {
+//         setOrders([...orders, res.data])
+//       })
+//       .catch(err => {
+//         console.log(err)
+//       })
       
-  }
+//   }
   return(
     <div>
         {
-            orders.map(order =>(
-                console.log(
-                    `
-                    Name: ${orders.name},
-                    Size : ${orders.size},
-                    Sauce: ${orders.sauce},
-                    Toppings: ${orders.toppings}
-                    `
-                )
-            ))
+            // orders.map(order =>(
+            //     console.log(
+            //         `
+            //         Name: ${orders.name},
+            //         Size : ${orders.size},
+            //         Sauce: ${orders.sauce},
+            //         Toppings: ${orders.toppings}
+            //         `
+            //     )
+            // ))
             
             
             // <div className='user'>
